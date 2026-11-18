@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+
+<body>
+    <header>
+        <h1>GridPulse Smart-Meter Service Registration</h1>
+        <nav>
+            <a href="../Practicum%201/1.html">Home</a> |
+            <a href="../Practicum%202/2.html">Gallery</a> |
+            <a href="../Practicum%203/3.html">Register</a> |
+            <a href="../Practicum%204/4.html">Styled Page</a> |
+            <a href="../Practicum%205/5.html">Flexbox Nav</a>
+        </nav>
+    </header>
+
+    <main>
+        <form action="#" method="post" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Account Details</legend>
+
+                <label for="name">Full name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required minlength="3"
+                    maxlength="30"><br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required><br><br>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="At least 8 characters" required
+                    minlength="8"><br><br>
+
+                <label for="phone">Phone number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" required
+                    pattern="[0-9]{10}"><br><br>
+            </fieldset>
+
+            <fieldset>
+                <legend>Connection Details</legend>
+
+                <label for="load">Connected load (kW):</label>
+                <input type="number" id="load" name="load" min="1" max="500" step="0.5" required><br><br>
+
+                <label for="install_date">Preferred installation date:</label>
+                <input type="date" id="install_date" name="install_date" min="2026-01-01" required><br><br>
+
+                <label for="region">Region:</label>
+                <select id="region" name="region" required>
+                    <option value="">Select</option>
+                    <option value="tamil-nadu">Tamil Nadu</option>
+                    <option value="kerala">Kerala</option>
+                    <option value="karnataka">Karnataka</option>
+                    <option value="andhra-pradesh">Andhra Pradesh</option>
+                </select><br><br>
+
+                <p>Connection type:</p>
+                <input type="radio" id="residential" name="connection" value="residential" required>
+                <label for="residential">Residential</label>
+                <input type="radio" id="commercial" name="connection" value="commercial">
+                <label for="commercial">Commercial</label>
+                <input type="radio" id="industrial" name="connection" value="industrial">
+                <label for="industrial">Industrial</label><br><br>
+
+                <p>Services required:</p>
+                <input type="checkbox" id="solar" name="services" value="solar">
+                <label for="solar">Solar integration</label><br>
+                <input type="checkbox" id="storage" name="services" value="storage">
+                <label for="storage">Battery storage</label><br>
+                <input type="checkbox" id="monitoring" name="services" value="monitoring" checked>
+                <label for="monitoring">Energy monitoring</label><br>
+                <input type="checkbox" id="ev" name="services" value="ev">
+                <label for="ev">EV charging</label><br><br>
+            </fieldset>
+
+            <fieldset>
+                <legend>Additional Information</legend>
+
+                <label for="bill">Upload latest electricity bill:</label>
+                <input type="file" id="bill" name="bill" accept=".pdf,.jpg,.png"><br><br>
+
+                <label for="notes">Site notes:</label><br>
+                <textarea id="notes" name="notes" rows="4" cols="50" maxlength="500"
+                    placeholder="Meter location, access instructions, etc."></textarea><br><br>
+            </fieldset>
+
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 GridPulse Systems</p>
+    </footer>
+</body>
+
+</html>

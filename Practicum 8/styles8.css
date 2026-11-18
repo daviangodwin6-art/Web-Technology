@@ -1,0 +1,114 @@
+body {
+    font-family: Arial;
+    background-color: lightgray;
+    margin: 0px;
+}
+
+.header {
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.menu {
+    background-color: black;
+    padding: 10px;
+    text-align: center;
+}
+
+.menu a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    color: yellow;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.box {
+    background-color: white;
+    border: 2px solid darkblue;
+    padding: 15px;
+    width: 33%;
+}
+
+.screen-size {
+    text-align: center;
+    font-weight: bold;
+    color: darkblue;
+}
+
+.tablet,
+.mobile {
+    display: none;
+}
+
+.footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* tablet */
+@media (max-width: 900px) {
+    .container {
+        flex-wrap: wrap;
+    }
+
+    .box {
+        width: 45%;
+    }
+
+    .header {
+        background-color: darkgreen;
+    }
+
+    .desktop {
+        display: none;
+    }
+
+    .tablet {
+        display: block;
+    }
+}
+
+/* mobile */
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .box {
+        width: auto;
+    }
+
+    .header {
+        background-color: purple;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .menu a {
+        display: block;
+        margin: 5px;
+    }
+
+    .tablet {
+        display: none;
+    }
+
+    .mobile {
+        display: block;
+    }
+}
