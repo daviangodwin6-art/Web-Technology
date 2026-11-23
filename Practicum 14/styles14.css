@@ -1,0 +1,93 @@
+body {
+    font-family: Arial;
+    background-color: lightgray;
+    margin: 0px;
+}
+
+.header {
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+section {
+    padding: 20px;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+input,
+select {
+    padding: 8px;
+    border: 2px solid gray;
+}
+
+input:focus,
+select:focus {
+    border-color: darkblue;
+    outline: none;
+}
+
+button {
+    background-color: darkblue;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    padding: 0px;
+}
+
+.card {
+    position: relative;
+    list-style: none;
+    background-color: white;
+    border: 2px solid darkblue;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card.selected {
+    background-color: lightyellow;
+    border-color: orange;
+}
+
+.highlight {
+    color: green;
+    font-weight: bold;
+}
+
+details {
+    background-color: white;
+    border: 1px solid darkblue;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+summary {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}

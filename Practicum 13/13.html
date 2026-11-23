@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance Task Manager</title>
+    <link rel="stylesheet" href="styles13.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>GridPulse Smart Grid</h1>
+        <p>Maintenance Task Manager</p>
+    </div>
+
+    <section>
+        <form id="taskForm">
+            <input id="title" placeholder="Task (e.g. Inspect Transformer T2)" required>
+            <textarea id="desc" placeholder="Description"></textarea>
+            <select id="status">
+                <option>Pending</option>
+                <option>In Progress</option>
+                <option>Done</option>
+            </select>
+            <button type="submit" id="saveBtn">Add Task</button>
+        </form>
+    </section>
+
+    <section>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="taskTable"></tbody>
+        </table>
+    </section>
+
+    <div class="footer">
+        <p>Made by Davian Godwin - URK26CS1103</p>
+    </div>
+
+    <script>
+        var tasks = JSON.parse(localStorage.getItem("gridTasks")) || [];
+        var editId = null;
+
+        function save() {
+            localStorage.setItem("gridTasks", JSON.stringify(tasks));
+        }
+
+        function render() {
+            var table = document.getElementById("taskTable");
+            table.innerHTML = "";
+            tasks.forEach(function (task) {
+                var row = document.createElement("tr");
+                row.innerHTML = "<td></td><td></td><td></td>" +
+                    "<td><button class='edit'>Edit</button><button class='delete'>Delete</button></td>";
+                row.children[0].textContent = task.title;
+                row.children[1].textContent = task.desc;
+                row.children[2].textContent = task.status;
+
+                row.querySelector(".edit").addEventListener("click", function () {
+                    var t = tasks.find(function (x) { return x.id === task.id; });
+                    document.getElementById("title").value = t.title;
+                    document.getElementById("desc").value = t.desc;
+                    document.getElementById("status").value = t.status;
+                    editId = t.id;
+                    document.getElementById("saveBtn").textContent = "Update Task";
+                });
+
+                row.querySelector(".delete").addEventListener("click", function () {
+                    tasks = tasks.filter(function (x) { return x.id !== task.id; });
+                    save();
+                    row.remove();
+                });
+
+                table.appendChild(row);
+            });
+        }
+
+        document.getElementById("taskForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            var title = document.getElementById("title").value;
+            var desc = document.getElementById("desc").value;
+            var status = document.getElementById("status").value;
+
+            if (editId) {
+                var t = tasks.find(function (x) { return x.id === editId; });
+                t.title = title;
+                t.desc = desc;
+                t.status = status;
+                editId = null;
+                document.getElementById("saveBtn").textContent = "Add Task";
+            } else {
+                tasks.push({ id: Date.now(), title: title, desc: desc, status: status });
+            }
+
+            save();
+            render();
+            this.reset();
+        });
+
+        render();
+    </script>
+</body>
+
+</html>

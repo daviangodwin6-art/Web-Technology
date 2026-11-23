@@ -1,0 +1,61 @@
+body {
+    font-family: Arial;
+    background-color: lightgray;
+    margin: 0px;
+}
+
+.header {
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+section {
+    padding: 20px;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    padding: 8px;
+    border: 1px solid darkblue;
+}
+
+button {
+    background-color: darkblue;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+ul {
+    padding: 0px;
+}
+
+.meter {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    background-color: white;
+    border: 2px solid darkblue;
+    padding: 10px;
+    margin-bottom: 10px;
+    list-style: none;
+}
+
+.delete {
+    background-color: red;
+}
+
+.footer {
+    position: relative;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renewable Energy Forecast</title>
+    <link rel="stylesheet" href="styles12.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>GridPulse Smart Grid</h1>
+        <p>Solar and Wind Forecast (Coimbatore)</p>
+    </div>
+
+    <section>
+        <button id="loadBtn">Load Forecast</button>
+        <p id="status"></p>
+
+        <div class="table-box">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Temperature (°C)</th>
+                        <th>Wind Speed (km/h)</th>
+                        <th>Solar Radiation (W/m²)</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <div class="footer">
+        <p>Made by Davian Godwin - URK26CS1103</p>
+    </div>
+
+    <script>
+        var url = "https://api.open-meteo.com/v1/forecast?latitude=10.93&longitude=76.74" +
+            "&hourly=temperature_2m,wind_speed_10m,shortwave_radiation&forecast_days=1&timezone=auto";
+
+        async function loadData() {
+            var status = document.getElementById("status");
+            var body = document.getElementById("tableBody");
+            status.textContent = "Loading...";
+            body.innerHTML = "";
+
+            try {
+                var response = await fetch(url);
+                if (!response.ok) throw new Error("Server error " + response.status);
+                var data = await response.json();
+                var h = data.hourly;
+
+                for (var i = 0; i < h.time.length; i++) {
+                    var row = document.createElement("tr");
+                    var values = [h.time[i].slice(11), h.temperature_2m[i], h.wind_speed_10m[i], h.shortwave_radiation[i]];
+                    values.forEach(function (v) {
+                        var td = document.createElement("td");
+                        td.textContent = v;
+                        row.appendChild(td);
+                    });
+                    body.appendChild(row);
+                }
+                status.textContent = "Loaded " + h.time.length + " hourly readings.";
+            } catch (err) {
+                status.textContent = "Failed to load data: " + err.message;
+            } finally {
+                document.getElementById("loadBtn").textContent = "Reload Forecast";
+            }
+        }
+
+        document.getElementById("loadBtn").addEventListener("click", loadData);
+    </script>
+</body>
+
+</html>

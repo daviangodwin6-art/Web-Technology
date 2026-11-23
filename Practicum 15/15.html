@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Saver Toggle</title>
+    <link rel="stylesheet" href="styles15.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>GridPulse Smart Grid</h1>
+        <p>Application Settings</p>
+    </div>
+
+    <div class="box">
+        <label class="switch">
+            <input type="checkbox" id="saver">
+            <span class="slider"></span>
+        </label>
+        <span>Energy Saver Mode</span>
+        <p id="info">Energy Saver is OFF - all loads at full power.</p>
+    </div>
+
+    <div class="footer">
+        <p>Made by Davian Godwin - URK26CS1103</p>
+    </div>
+
+    <script>
+        var saver = document.getElementById("saver");
+
+        function apply() {
+            document.body.classList.toggle("saving", saver.checked);
+            document.getElementById("info").textContent = saver.checked
+                ? "Energy Saver is ON - non-essential loads reduced by 30%."
+                : "Energy Saver is OFF - all loads at full power.";
+        }
+
+        saver.checked = localStorage.getItem("energySaver") === "true";
+        apply();
+
+        saver.addEventListener("change", function () {
+            localStorage.setItem("energySaver", saver.checked);
+            apply();
+        });
+    </script>
+</body>
+
+</html>

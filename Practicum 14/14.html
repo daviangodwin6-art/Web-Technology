@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Plant Search</title>
+    <link rel="stylesheet" href="styles14.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>GridPulse Smart Grid</h1>
+        <p>Search and Filter Power Plants</p>
+    </div>
+
+    <section class="controls">
+        <input id="search" placeholder="Search plant name">
+        <select id="filter">
+            <option value="All">All Types</option>
+            <option>Solar</option>
+            <option>Wind</option>
+            <option>Hydro</option>
+        </select>
+        <button id="biggestBtn">Find Biggest</button>
+    </section>
+
+    <section>
+        <ul id="plantList" class="grid"></ul>
+        <p id="result"></p>
+    </section>
+
+    <section>
+        <details>
+            <summary>What is a smart grid?</summary>
+            <p>An electricity network that uses sensors and software to balance supply and demand automatically.</p>
+        </details>
+        <details>
+            <summary>Why use renewable plants?</summary>
+            <p>They cut fuel cost and carbon emissions while the grid balances their changing output.</p>
+        </details>
+    </section>
+
+    <div class="footer">
+        <p>Made by Davian Godwin - URK26CS1103</p>
+    </div>
+
+    <script>
+        var plants = [
+            { name: "Kamuthi Solar Park", type: "Solar", mw: 648, img: "placeholder.png" },
+            { name: "Muppandal Wind Farm", type: "Wind", mw: 1500, img: "placeholder.png" },
+            { name: "Mettur Hydro Plant", type: "Hydro", mw: 250, img: "placeholder.png" },
+            { name: "Bhadla Solar Park", type: "Solar", mw: 2245, img: "placeholder.png" },
+            { name: "Jaisalmer Wind Park", type: "Wind", mw: 1064, img: "placeholder.png" }
+        ];
+
+        function show() {
+            var text = document.querySelector("#search").value.toLowerCase();
+            var type = document.querySelector("#filter").value;
+            var list = document.querySelector("#plantList");
+            list.innerHTML = "";
+
+            plants
+                .filter(function (p) {
+                    return p.name.toLowerCase().includes(text) && (type === "All" || p.type === type);
+                })
+                .forEach(function (p) {
+                    var li = document.createElement("li");
+                    li.className = "card";
+                    li.innerHTML = "<img src='" + p.img + "' alt='" + p.type + "'><p>" + p.name + "</p><p>" + p.type + " - " + p.mw + " MW</p>";
+                    li.addEventListener("click", function () {
+                        document.querySelectorAll(".card").forEach(function (c) { c.classList.remove("selected"); });
+                        li.classList.add("selected");
+                    });
+                    list.appendChild(li);
+                });
+        }
+
+        document.querySelector("#search").addEventListener("input", show);
+        document.querySelector("#filter").addEventListener("change", show);
+
+        document.querySelector("#biggestBtn").addEventListener("click", function () {
+            var max = Math.max.apply(null, plants.map(function (p) { return p.mw; }));
+            var big = plants.find(function (p) { return p.mw === max; });
+            document.querySelector("#result").textContent = "Biggest plant: " + big.name + " (" + big.mw + " MW)";
+            document.querySelector("#result").classList.toggle("highlight");
+        });
+
+        show();
+    </script>
+</body>
+
+</html>

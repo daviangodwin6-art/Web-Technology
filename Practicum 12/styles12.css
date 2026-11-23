@@ -1,0 +1,64 @@
+body {
+    font-family: Arial;
+    background-color: lightgray;
+    margin: 0px;
+}
+
+.header {
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+section {
+    display: grid;
+    justify-items: center;
+    padding: 20px;
+}
+
+button {
+    background-color: darkblue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#status {
+    font-weight: bold;
+    color: darkblue;
+}
+
+.table-box {
+    max-height: 400px;
+    overflow: auto;
+}
+
+table {
+    border-collapse: collapse;
+    background-color: white;
+}
+
+th,
+td {
+    border: 1px solid darkblue;
+    padding: 8px 15px;
+    text-align: center;
+}
+
+th {
+    background-color: darkblue;
+    color: white;
+    position: sticky;
+    top: 0px;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    margin: 0px;
+}

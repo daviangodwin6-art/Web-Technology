@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Connection Form</title>
+    <link rel="stylesheet" href="styles11.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>GridPulse Smart Grid</h1>
+        <p>Apply for a Smart Meter Connection</p>
+    </div>
+
+    <form id="connForm" novalidate>
+        <fieldset>
+            <legend>Customer Details</legend>
+
+            <label>Full Name</label>
+            <input id="name" type="text" required minlength="3" maxlength="40" placeholder="Your name">
+
+            <label>Phone</label>
+            <input id="phone" type="tel" required pattern="[0-9]{10}" placeholder="10 digit number">
+
+            <label>Email</label>
+            <input id="email" type="email" required placeholder="name@example.com">
+
+            <label>Connection Type</label>
+            <select id="type" required>
+                <option value="">-- Select --</option>
+                <option>Residential</option>
+                <option>Commercial</option>
+                <option>Industrial</option>
+            </select>
+
+            <label>Required Load (kW)</label>
+            <input id="load" type="number" required min="1" max="500" placeholder="1 - 500">
+
+            <label>Address</label>
+            <textarea id="address" required minlength="10" placeholder="Full address"></textarea>
+
+            <button type="submit">Submit</button>
+        </fieldset>
+    </form>
+
+    <p id="message"></p>
+
+    <div class="footer">
+        <p>Made by Davian Godwin - URK26CS1103</p>
+    </div>
+
+    <script>
+        var form = document.getElementById("connForm");
+        var load = document.getElementById("load");
+        var type = document.getElementById("type");
+        var message = document.getElementById("message");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // residential connections are limited to 20 kW
+            if (type.value === "Residential" && Number(load.value) > 20) {
+                load.setCustomValidity("Residential load cannot exceed 20 kW");
+            } else {
+                load.setCustomValidity("");
+            }
+
+            if (form.checkValidity()) {
+                message.textContent = "Application submitted successfully!";
+                message.className = "success";
+                form.reset();
+            } else {
+                form.reportValidity();
+                message.textContent = "Please fix the errors in the form.";
+                message.className = "error";
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+body {
+    font-family: Arial;
+    background-color: lightgray;
+    margin: 0px;
+}
+
+.header {
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+section {
+    text-align: center;
+    padding: 20px;
+}
+
+button {
+    background-color: darkblue;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    border: 2px solid darkblue;
+    padding: 15px;
+    text-align: center;
+    opacity: 0;
+}
+
+.card.show {
+    animation: slideUp 1s forwards;
+}
+
+.card:hover {
+    transform: rotate(3deg);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.details {
+    background-color: white;
+    margin: 20px;
+    padding: 0px 15px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+.details.open {
+    max-height: 100px;
+}
+
+.notice {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: red;
+    color: white;
+    padding: 15px;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.notice.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}

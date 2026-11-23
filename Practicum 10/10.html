@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Meter Manager</title>
+    <link rel="stylesheet" href="styles10.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>GridPulse Smart Grid</h1>
+        <p>Smart Meter List</p>
+    </div>
+
+    <section class="controls">
+        <input id="meterName" placeholder="Meter location">
+        <input id="meterUsage" type="number" placeholder="Usage (kWh)">
+        <button id="addBtn">Add Meter</button>
+    </section>
+
+    <section>
+        <p>Total meters: <span id="count">0</span></p>
+        <ul id="meterList"></ul>
+    </section>
+
+    <div class="footer">
+        <p>Made by Davian Godwin - URK26CS1103</p>
+    </div>
+
+    <script>
+        var list = document.getElementById("meterList");
+
+        function updateCount() {
+            document.getElementById("count").textContent = list.children.length;
+        }
+
+        function addMeter(name, usage) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "meter");
+            li.innerHTML = "<span>" + name + " - " + usage + " kWh</span>" +
+                "<button class='edit'>Edit</button><button class='delete'>Delete</button>";
+            list.appendChild(li);
+
+            li.querySelector(".edit").addEventListener("click", function () {
+                var newUsage = prompt("New usage for " + name + " (kWh):", usage);
+                if (newUsage) {
+                    usage = newUsage;
+                    li.querySelector("span").textContent = name + " - " + usage + " kWh";
+                }
+            });
+
+            li.querySelector(".delete").addEventListener("click", function () {
+                li.remove();
+                updateCount();
+            });
+
+            updateCount();
+        }
+
+        document.getElementById("addBtn").addEventListener("click", function () {
+            var name = document.getElementById("meterName").value;
+            var usage = document.getElementById("meterUsage").value;
+            if (name === "" || usage === "") {
+                alert("Enter location and usage");
+                return;
+            }
+            addMeter(name, usage);
+            document.getElementById("meterName").value = "";
+            document.getElementById("meterUsage").value = "";
+        });
+
+        addMeter("Substation A", 450);
+        addMeter("Hospital Block", 820);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Grid Animations</title>
+    <link rel="stylesheet" href="styles9.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>GridPulse Smart Grid</h1>
+        <p>Animated grid status</p>
+    </div>
+
+    <section>
+        <button id="showCards">Show Grid Info</button>
+        <button id="notifyBtn">Send Alert</button>
+        <button id="toggleBtn">Open / Close Details</button>
+    </section>
+
+    <div class="cards">
+        <div class="card"><img src="placeholder.png" alt="Solar"><p>Solar: 120 MW</p></div>
+        <div class="card"><img src="placeholder.png" alt="Wind"><p>Wind: 80 MW</p></div>
+        <div class="card"><img src="placeholder.png" alt="Battery"><p>Storage: 65%</p></div>
+    </div>
+
+    <div id="details" class="details">
+        <p>The smart grid balances solar, wind and battery power every second using live sensor data.</p>
+    </div>
+
+    <span id="notice" class="notice">⚡ Overload warning on Line 4!</span>
+
+    <div class="footer">
+        <p>Made by Davian Godwin - URK26CS1103</p>
+    </div>
+
+    <script>
+        document.getElementById("showCards").addEventListener("click", function () {
+            document.querySelectorAll(".card").forEach(function (card) {
+                card.classList.add("show");
+            });
+        });
+
+        document.getElementById("notifyBtn").addEventListener("click", function () {
+            var notice = document.getElementById("notice");
+            notice.classList.add("show");
+            setTimeout(function () {
+                notice.classList.remove("show");
+            }, 3000);
+        });
+
+        document.getElementById("toggleBtn").addEventListener("click", function () {
+            document.getElementById("details").classList.toggle("open");
+        });
+    </script>
+</body>
+
+</html>
